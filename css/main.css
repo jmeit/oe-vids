@@ -102,8 +102,7 @@ body{
 }
 
 .wrap{
-	padding:0 10px;
-	max-width:820px;
+	width:90%;
 	margin:0 auto;
 }
 
@@ -147,11 +146,7 @@ body{
 		width:384px;
 		padding-right:52px;
 		text-align:left;
-	}
-		.player-module:nth-child(even){
-			padding-right:0;
-		}
-		
+	}	
 		.player{
 			margin:0;
 		}
