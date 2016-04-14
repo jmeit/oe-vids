@@ -17,10 +17,14 @@
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/main.css">
 		
+		<!--[if lte IE 8]>
+			<link rel="stylesheet" href="css/ie8.css">
+        <![endif]-->
+		
 		<script src="js/vendor/flowplayer_desktop.js"></script>
     </head>
     <body>
-        <!--[if lt IE 8]>
+        <!--[if lte IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
 
@@ -29,16 +33,12 @@
 		<div class="vids-wrapper wrap clearfix">
 		
 			<?php
-			$numBoxes = 7;
-			
-			
-			// for($i=0;$i<$numBoxes;$i++){
 			foreach($videos as $i => $vid){
 				?>
 				<div class="player-module">
 					<h2 class="vid-title"><?=$vid['title']?><br /><?=$vid['meta']?></h2>
 					<div class="player">
-						<video preload="metadata" controls poster="<?=$vid['poster']?>" >
+						<video class="vid-player" preload="metadata" controls="true" poster="<?=$vid['poster']?>" >
 							<?php
 							foreach($vid['sources'] as $src){
 								?>
@@ -50,16 +50,39 @@
 							* Fallback to Flowplayer
 							*/
 							?>
-							<a href="https://s3.amazonaws.com/l39gg632kcb0ewpfj-sites-default-files/2016_Videos/ST_Feb5_VAN_01_Singh.mp4"
-								background="https://www.oncologyeducation.com/assets/images/Speaker%20Tours/pNETS%202016/SpeakerTourJan282016_01_Singh.jpg"
+							<a href="<?=$src['src']?>"
+								background="<?=$vid['poster']?>"
 							    style="display:block;width:384px;height:216px;"
+								class="fallback_player"
 							    id="player<?=$i?>">
 							</a>
 						 
 							<script language="JavaScript">
-							  flowplayer("player<?=$i?>", "js/vendor/flowplayer-3.2.18.swf");
+							  flowplayer("player<?=$i?>", "js/vendor/flowplayer-3.2.18.swf", {
+								  clip:  {
+									  autoPlay: false,
+								  }
+							  });
 							</script>
 						</video>
+						<!--[if IE 9]>
+							<div>
+								<a href="<?=$src['src']?>"
+									background="<?=$vid['poster']?>"
+									style="display:block;width:384px;height:216px;"
+									class="fallback_player"
+									id="player<?=$i?>">
+								</a>
+							 
+								<script language="JavaScript">
+								  flowplayer("player<?=$i?>", "js/vendor/flowplayer-3.2.18.swf", {
+									  clip:  {
+										  autoPlay: false,
+									  }
+								  });
+								</script>
+							</div>
+						<![endif]-->
 					</div>
 				</div>
 				<?php
@@ -73,6 +96,14 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.12.0.min.js"><\/script>')</script>
 		<script src="js/main.js"></script>
 		
+		<!--[if IE 9]>
+			<script language="JavaScript" type="text/javascript">
+				jQuery('.vid-player').remove();
+			</script>
+			<style type="text/css">
+				.vid-player{ display:none; }
+			</style>
+		<![endif]-->
 		
 		
     </body>
