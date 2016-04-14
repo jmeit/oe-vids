@@ -1,4 +1,5 @@
 # oe-vids
-Currently mirrors the *wireframe* branch, but is ultimately used only as a temp folder.
+Displays titles **and videos** listed in the video_list.php array.
 
-This will be the future home of the completed version, once the *fullwidth* branch has it's issues fixed.
+**Known Issues:**
+- Flash fallback on IE9
