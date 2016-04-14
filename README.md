@@ -5,4 +5,4 @@ Displays titles **and videos** listed in the video_list.php array.
 - Flash fallback on IE9
 
 **Alternate Versions:**
-- Found at beamwell.com
+- Found on beamwell.com
